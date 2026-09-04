@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "User": {
+      "path": "users/{userId}",
+      "fields": {
+        "email": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "lastLoginAt": { "type": "string" }
+      }
+    },
+    "Journal": {
+      "path": "users/{userId}/journals/{journalId}",
+      "fields": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "type": "string" },
+        "messages": { "type": "array" },
+        "summary": { "type": "string" },
+        "keyThemes": { "type": "array" },
+        "mood": { "type": "string" },
+        "actionItems": { "type": "array" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      }
+    },
+    "Insight": {
+      "path": "users/{userId}/insights/{insightId}",
+      "fields": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "generatedAt": { "type": "string" },
+        "journalCountAnalyzed": { "type": "number" },
+        "recurringThemes": { "type": "array" },
+        "reflectionPatterns": { "type": "array" },
+        "personalizedPrompts": { "type": "array" },
+        "emotionalTrends": { "type": "string" }
+      }
+    }
+  }
+}

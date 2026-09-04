@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Restrict access strictly by authenticated user ID
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+      
+      match /{allSubcollections=**} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+
+    match /users/{userId}/journals/{journalId} {
+      allow read, create, update, delete: if request.auth != null && request.auth.uid == userId;
+    }
+
+    match /users/{userId}/insights/{insightId} {
+      allow read, create, update, delete: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
